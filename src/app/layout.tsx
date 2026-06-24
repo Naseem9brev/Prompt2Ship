@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Prompt2Ship",
-  description: "Scan your 2026 public GitHub commits for AI-assist signals.",
+  description: "Show 2026 public GitHub commits shipped with AI leverage.",
 };
 
 const geistSans = Geist({
