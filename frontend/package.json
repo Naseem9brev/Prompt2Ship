@@ -1,0 +1,28 @@
+{
+  "name": "@prompt2ship/frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint \"app/**/*.{ts,tsx}\" --max-warnings=0",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "15.5.18",
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "@types/react": "19.1.12",
+    "@types/react-dom": "19.1.9",
+    "autoprefixer": "10.4.20",
+    "eslint": "8.57.1",
+    "eslint-config-next": "15.5.18",
+    "postcss": "8.5.10",
+    "tailwindcss": "3.4.17",
+    "typescript": "5.7.3"
+  }
+}
