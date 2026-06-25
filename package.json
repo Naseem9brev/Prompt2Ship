@@ -5,15 +5,16 @@
   "workspaces": [
     "frontend"
   ],
-  "overrides": {
-    "postcss": "8.5.10"
-  },
   "scripts": {
+    "dev": "npm run dev --workspace frontend",
     "lint": "npm run lint --workspace frontend",
     "typecheck": "npm run typecheck --workspace frontend",
     "build": "npm run build --workspace frontend",
     "frontend:dev": "npm run dev --workspace frontend",
     "backend:lint": "python -m ruff check backend",
     "backend:test": "PYTHONPATH=backend python -m pytest backend/tests"
+  },
+  "overrides": {
+    "postcss": "8.5.10"
   }
 }

@@ -1,12 +1,25 @@
 # Prompt2Ship
 
-Prompt2Ship is a Phase 1 MVP for scoring how AI-assisted a developer's 2026 public GitHub commit history appears. Users connect GitHub through Supabase Auth, the backend scans public GitHub data, and the app shows a public leaderboard plus shareable profile pages.
+Prompt2Ship is a Phase 1 MVP for scoring and sharing a developer's public GitHub shipping activity. The app combines a Next.js/Tailwind frontend, mock-data UI fallbacks, Supabase client placeholders for GitHub OAuth, and a FastAPI backend scaffold for future scan APIs.
 
 ## Monorepo layout
 
-- `frontend/` — Next.js + Tailwind app intended for Vercel.
+- `frontend/` — Next.js App Router UI intended for Vercel.
 - `backend/` — FastAPI service intended for Render.
 - `supabase/` — Supabase migrations and database/Auth configuration.
+- `docs/` — Product and design notes.
+
+## UI routes
+
+```tsx
+/                 // landing hero + Connect GitHub CTA + leaderboard preview
+/leaderboard      // ranked public leaderboard shell
+/u/[username]     // shareable score/profile card
+/scan             // scan-progress console demo, SSE-ready UI shape
+/api-status       // backend connection placeholder
+```
+
+The UI uses mock leaderboard/profile data when Supabase env vars are not configured.
 
 ## Local setup
 
@@ -15,7 +28,7 @@ Prompt2Ship is a Phase 1 MVP for scoring how AI-assisted a developer's 2026 publ
 ```bash
 npm install
 cp frontend/.env.example frontend/.env.local
-npm run frontend:dev
+npm run dev --workspace frontend
 ```
 
 ### Backend
@@ -43,5 +56,3 @@ npm run backend:test
 - Frontend: Vercel project rooted at `frontend/`.
 - Backend: Render Python web service rooted at `backend/`.
 - Database/Auth: Supabase Postgres/Auth with GitHub OAuth provider enabled.
-
-Further feature PRs will add Supabase schema/RLS, GitHub OAuth flow, scan engine, leaderboard/profile pages, SSE progress, and 3-day delta refresh.
