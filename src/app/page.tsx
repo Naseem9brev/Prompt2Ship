@@ -1,9 +1,9 @@
 const logLines = [
-  ["14:32:08", "auth", "GitHub token verified via Supabase", "success"],
+  ["14:32:08", "auth", "GitHub account connected", "success"],
   ["14:32:09", "repos", "found 18 public repos with 2026 activity", ""],
   ["14:32:13", "commits", "scanned 305 qualifying commits", ""],
-  ["14:32:16", "signals", "detected 128 AI-assist commit signals", "success"],
-  ["14:32:18", "score", "(0.42 + 0.09) × 2.49 => 1.27 █", "gradient"],
+  ["14:32:16", "leverage", "128 commits shipped with AI leverage", "success"],
+  ["14:32:18", "snapshot", "AI leverage total => 128 shipped commits █", "gradient"],
 ];
 
 const podium = [
@@ -14,7 +14,7 @@ const podium = [
     handle: "@johndev",
     rank: "#2",
     score: "1.94",
-    meta: "52% signaled",
+    meta: "512 leverage commits",
   },
   {
     className: "podiumCard podiumFirst",
@@ -32,29 +32,29 @@ const podium = [
     handle: "@augusta",
     rank: "#3",
     score: "1.72",
-    meta: "39% signaled",
+    meta: "391 leverage commits",
   },
 ];
 
 const leaderboardRows = [
-  ["12", "NB", "Naseem Brev", "@Naseem9brev", "1.27", "42% AI", "305 commits", true],
-  ["13", "SC", "Sam Chen", "@samcodes", "1.22", "38% AI", "412 commits", false],
-  ["14", "AK", "Ava Khan", "@ava-k", "1.19", "33% AI", "588 commits", false],
-  ["15", "ML", "Mina Lee", "@minadev", "1.16", "29% AI", "930 commits", false],
+  ["12", "NB", "Naseem Brev", "@Naseem9brev", "1.27", "128 leverage commits", "305 commits", true],
+  ["13", "SC", "Sam Chen", "@samcodes", "1.22", "156 leverage commits", "412 commits", false],
+  ["14", "AK", "Ava Khan", "@ava-k", "1.19", "194 leverage commits", "588 commits", false],
+  ["15", "ML", "Mina Lee", "@minadev", "1.16", "270 leverage commits", "930 commits", false],
 ];
 
 const metrics = [
-  ["Signaled", "684"],
+  ["Leverage commits", "684"],
   ["Commits", "1,284"],
-  ["AI repos", "11"],
-  ["Volume", "3.11"],
+  ["Leverage repos", "11"],
+  ["Ship index", "3.11"],
 ];
 
 const breakdown = [
-  ["AI trailers", "56%", "71"],
-  ["AI-style messages", "78%", "99"],
+  ["Leverage trailers", "56%", "71"],
+  ["Assisted messages", "78%", "99"],
   ["Generated footers", "23%", "29"],
-  ["Bursty timing", "41%", "52"],
+  ["Shipping bursts", "41%", "52"],
 ];
 
 const repoSignals = [".cursor/", "CLAUDE.md", ".devin/", "copilot-instructions.md"];
@@ -70,7 +70,7 @@ export default function Home() {
         <nav className="navLinks" aria-label="Primary navigation">
           <a href="#leaderboard">Leaderboard</a>
           <a href="#profile">Profile</a>
-          <a href="#scoring">How scoring works</a>
+          <a href="#scoring">Leverage snapshot</a>
         </nav>
         <a className="githubButton" href="#connect">
           <span className="statusDot" aria-hidden="true" />
@@ -85,11 +85,11 @@ export default function Home() {
             2026 PUBLIC COMMIT SCAN
           </div>
           <h1>
-            How much of your code did you <span className="gradientText">actually write?</span>
+            128 commits shipped with <span className="gradientText">AI leverage.</span>
           </h1>
           <p>
-            Connect GitHub. Prompt2Ship scans public 2026 commits, detects AI-assist signals,
-            computes a composite score, and ranks you on a developer-native leaderboard.
+            Connect GitHub to frame public 2026 commits by how much AI helped you ship:
+            leverage count, momentum, and a developer-native leaderboard.
           </p>
           <div className="heroActions" id="connect">
             <a className="buttonPrimary" href="#scan">
@@ -99,7 +99,7 @@ export default function Home() {
               View leaderboard
             </a>
           </div>
-          <p className="microcopy mono">Public commits only · GitHub OAuth via Supabase · No private repo scan in Phase 1</p>
+          <p className="microcopy mono">Public commits only · AI leverage framing · No private repo scan in Phase 1</p>
         </div>
 
         <aside className="previewCard" aria-label="Scan preview">
@@ -114,9 +114,9 @@ export default function Home() {
           <TerminalLog lines={logLines} />
           <div className="miniScoreGrid">
             <div className="miniScoreCard">
-              <span>AI-ASSIST SCORE</span>
-              <strong className="mono gradientText">1.27</strong>
-              <small>Top 9% globally</small>
+              <span>AI LEVERAGE</span>
+              <strong className="mono gradientText">128</strong>
+              <small>commits shipped with AI leverage</small>
             </div>
             <div className="miniScoreCard">
               <span>PUBLIC RANK</span>
@@ -130,7 +130,7 @@ export default function Home() {
       <section className="sectionHeader" id="leaderboard">
         <div>
           <h2>Leaderboard desktop layout</h2>
-          <p>Reference screenshot density, redesigned as a dark GitHub-like score board.</p>
+          <p>Reference screenshot density, redesigned as a dark GitHub-like leverage board.</p>
         </div>
         <div className="filterCluster">
           <span className="pill pillGreen">2026 commits</span>
@@ -201,7 +201,7 @@ export default function Home() {
               <h3>Naseem Brev</h3>
               <p className="mono">@Naseem9brev · scanned 14:32 UTC · rank #12</p>
               <div className="filterCluster">
-                <span className="pill pillGreen">Share score</span>
+                <span className="pill pillGreen">Share snapshot</span>
                 <span className="pill">Re-scan</span>
               </div>
             </div>
@@ -227,11 +227,11 @@ export default function Home() {
         </article>
 
         <article className="panel formulaPanel" id="scoring">
-          <span className="label mono">FORMULA DECOMPOSITION</span>
-          <pre className="formulaBlock mono">{`ai_ratio = 128 / 305 = 0.42
-repo_bonus = (4 / 9) × 0.2 = 0.09
-volume_factor = log10(306) = 2.49
-score = (0.42 + 0.09) × 2.49 = 1.27`}</pre>
+          <span className="label mono">LEVERAGE SNAPSHOT</span>
+          <pre className="formulaBlock mono">{`ai_leverage_commits = 128
+public_commits_reviewed = 305
+ship_rate = 128 / 305 = 42%
+snapshot = "128 commits shipped with AI leverage"`}</pre>
           <div className="swatchGrid" aria-label="Prompt2Ship palette">
             <span style={{ background: "#05070a" }} />
             <span style={{ background: "#0b0f14" }} />
@@ -264,11 +264,11 @@ score = (0.42 + 0.09) × 2.49 = 1.27`}</pre>
               <span className="promptGlyph">&gt;_</span>
               <span>Prompt2Ship</span>
             </div>
-            <span className="label mono">AI-ASSIST SCORE</span>
-            <strong className="shareScore mono gradientText">1.27</strong>
-            <span className="pill pillGreen">Top 9% · 2026 public commits</span>
+            <span className="label mono">AI LEVERAGE SNAPSHOT</span>
+            <strong className="shareScore mono gradientText">128</strong>
+            <span className="pill pillGreen">2026 public commits</span>
           </div>
-          <p className="mono">How much of your code did you actually write?</p>
+          <p className="mono">128 commits shipped with AI leverage</p>
         </article>
       </section>
     </main>
@@ -299,9 +299,9 @@ function ScoreRail() {
           <p className="mono">@reym · Level 3</p>
         </div>
       </div>
-      <span className="label mono">AI-ASSIST SCORE</span>
-      <strong className="bigScore mono gradientText">2.41</strong>
-      <span className="pill pillGreen">Top 1% of scanned developers</span>
+      <span className="label mono">AI LEVERAGE</span>
+      <strong className="bigScore mono gradientText">1,284</strong>
+      <span className="pill pillGreen">commits shipped with AI leverage</span>
       <div className="metricGrid">
         {metrics.map(([label, value]) => (
           <div className="metricCard" key={label}>
