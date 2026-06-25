@@ -44,4 +44,8 @@ npm run backend:test
 - Backend: Render Python web service rooted at `backend/`.
 - Database/Auth: Supabase Postgres/Auth with GitHub OAuth provider enabled.
 
+See [`docs/deployment.md`](docs/deployment.md) for the Phase 1 deployment matrix,
+required environment variables, OAuth callback URLs, Render cron configuration,
+and launch risk checklist.
+
 Further feature PRs will add Supabase schema/RLS, GitHub OAuth flow, scan engine, leaderboard/profile pages, SSE progress, and 3-day delta refresh.
