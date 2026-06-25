@@ -1,5 +1,5 @@
 {
-  "name": "prompted-and-shipped",
+  "name": "prompt2ship",
   "version": "0.1.0",
   "private": true,
   "workspaces": [
@@ -9,7 +9,10 @@
     "dev": "npm run dev --workspace frontend",
     "lint": "npm run lint --workspace frontend",
     "typecheck": "npm run typecheck --workspace frontend",
-    "build": "npm run build --workspace frontend"
+    "build": "npm run build --workspace frontend",
+    "frontend:dev": "npm run dev --workspace frontend",
+    "backend:lint": "python -m ruff check backend",
+    "backend:test": "PYTHONPATH=backend python -m pytest backend/tests"
   },
   "overrides": {
     "postcss": "8.5.10"

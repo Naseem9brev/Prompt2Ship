@@ -17,6 +17,8 @@ Prompt2Ship is a developer-native leaderboard for the AI-assisted shipping era. 
 
 It is built for makers, indie hackers, dev teams, and anyone who has ever looked at a commit graph and thought: “nice, but can it roast me a little?”
 
+The Phase 1 repo combines a Next.js/Tailwind frontend, mock-data UI fallbacks, Supabase client placeholders for GitHub OAuth, and a FastAPI backend scaffold for future scan APIs.
+
 ## What it does
 
 - **Scans public GitHub activity** for 2026 shipping signals.
@@ -42,13 +44,21 @@ It is built for makers, indie hackers, dev teams, and anyone who has ever looked
 | --- | --- |
 | ![Prompt2Ship profile page screenshot](docs/images/profile.jpg) | ![Prompt2Ship scan progress screenshot](docs/images/scan.jpg) |
 
+## Monorepo layout
+
+- `frontend/` — Next.js App Router UI intended for Vercel.
+- `backend/` — FastAPI service intended for Render.
+- `supabase/` — Supabase migrations and database/Auth configuration.
+- `docs/` — Product and design notes.
+
 ## Pages in the MVP
 
 ```tsx
 /                 // Landing page, Connect GitHub CTA, leaderboard preview
 /leaderboard      // Full public leaderboard shell
 /u/[username]     // Shareable score/profile card
-/scan             // Scan-progress console demo
+/scan             // Scan-progress console demo, SSE-ready UI shape
+/api-status       // Backend connection placeholder
 ```
 
 ## Stack
@@ -59,8 +69,11 @@ It is built for makers, indie hackers, dev teams, and anyone who has ever looked
 - shadcn-style component primitives
 - Supabase client wiring for future GitHub OAuth integration
 - Mock data fallback so the UI still looks alive before credentials are configured
+- FastAPI backend health/status scaffold
 
 ## Local setup
+
+### Frontend
 
 ```bash
 npm install
@@ -70,13 +83,39 @@ npm run dev --workspace frontend
 
 No Supabase credentials are required for the current UI preview; it falls back to mock leaderboard/profile data.
 
+### Backend
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e "backend[dev]"
+cp backend/.env.example backend/.env
+uvicorn app.main:app --reload --app-dir backend
+```
+
 ## Validation
 
 ```bash
 npm run lint
 npm run typecheck
 npm run build
+npm run backend:lint
+npm run backend:test
 ```
+
+## Deployment targets
+
+- Frontend: Vercel project rooted at `frontend/`.
+- Backend: Render Python web service rooted at `backend/`.
+- Database/Auth: Supabase Postgres/Auth with GitHub OAuth provider enabled.
+
+See [`docs/deployment.md`](docs/deployment.md) for the Phase 1 deployment matrix,
+required environment variables, OAuth callback URLs, Render cron configuration,
+and launch risk checklist.
+
+## Roadmap
+
+Further feature PRs will add Supabase schema/RLS, GitHub OAuth flow, scan engine, leaderboard/profile pages, SSE progress, and 3-day delta refresh.
 
 ## Tiny product promise
 
