@@ -3,6 +3,8 @@ from os import getenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.api.github import router as github_router
+
 SERVICE_NAME = "prompt2ship-api"
 VERSION = "0.1.0"
 
@@ -25,6 +27,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(github_router)
 
 
 @app.get("/")
